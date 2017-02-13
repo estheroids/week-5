@@ -2,8 +2,8 @@
   Set up our map
 ===================== */
 var map = L.map('map', {
-  center: [39.9522, -75.1639],
-  zoom: 14
+  center: [19.4326, -99.1332],
+  zoom: 12
 });
 var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -94,6 +94,12 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     you might want to include a name, an address, an age, a couple of boolean characteristics, and a
     favorite color. Don't spend too much time on thinking about the perfect object to represent with
     this form, just about anything will do.
+*/
+
+
+
+
+/*
 
   Task 2: Setting (writing) input values
     *NOTE*: An input's value is not the same as an HTML element's text. We use $(selector).val() as
@@ -104,10 +110,18 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     want to get formatting exactly right to set a color field; experiment in the console to see what
     the color you'll specify should look like).
 
+*/
+
+/*
+
   Task 3: Getting (reading) input values
     Write the code necessary to read from your input form and return a javascript object (with keys
     to clarify the meaning of each value) that has all the data that's stored in your form.
+*/
 
+
+
+/*
   Task 4: Enable user interaction with the form
     At this point, we're really only using HTML input fields as a kind of storage. We create some data,
     put that data on the DOM, and read it back out. What we really want to do is interact with the
@@ -169,5 +183,104 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+
+  $("#main-heading").text("can dialectics break bricks?");
+  $("#text-label1").text("marx or hegel?");
+  $("#text-label2").text("hammer, sickle, or ice axe?");
+  $("#text-label3").text("define bricks.");
+  $("#number-label").text("the number of fucks you actually give about dialectics and/or bricks?");
+  $("#checkbox-label1").text("bougie");
+  $("#checkbox-label2").text("prole");
+  $("#color-label").text("brick color");
+  $("button").text("break some bricks.");
+
+  $("#text-input1").val("marx.");
+  $("#text-input2").val("ice axe.");
+  $("#text-input3").val("the system.");
+  $("#numeric-input").val("-1");
+  $("#cbox-input1").prop('disabled', false);
+  $("#cbox-input2").prop('checked', true);
+  $("#color-input").val("#ff0000");
+
+  var read = new Object ();
+      read[$("#text-label1").text()]=$("#text-input1").val();
+      read[$("#text-label2").text()]=$("#text-input2").val();
+      read[$("#text-label3").text()]=$("#text-input3").val();
+      read[$("#number-label").text()]=$("#numeric-input").val();
+      read[$("#checkbox-label1").text()]=$("#cbox-input1").val();
+      read[$("#checkbox-label2").text()]=$("#cbox-input2").val();
+      read[$("#color-label").text()]=$("#color-input").val();
+
+
+      $('#text-input1').prop('disabled', false);
+      $('#text-input2').prop('disabled', false);
+      $('#text-input3').prop('disabled', false);
+      $('#numeric-input').prop('disabled', false);
+      $('#checkbox-label1').prop('disabled', false);
+      $('#checkbox-label2').prop('disabled', false);
+      $("#cbox-input1").prop('disabled', false);
+      $("#cbox-input2").prop('disabled', false);
+      $("#color-input").prop("disabled", false);
+
+      $("button").click(function(){
+        console.log(read);
+      });
+
+/*
+
+    $("button").click(function(){
+        $("#text-label2").text("hammer, sickle, or ice axe?");
+        $("#text-input2").val("ice axe.");
+        $("#text-label3").text("lat?");
+        $("#text-label3").attr('type','number');
+        $("#text-input3").val(19.357626);
+        $("#number-label").text("lng?");
+        $("#numeric-input").val(-99.159599);
+        $("#color-label").text("brick color");
+        $("#color-input").val("#ff0000");
+        L.circleMarker([$("#text-input3").val(),$("#numeric-input").val()], {setRadius: 50000000, color:$("#color-input").val()}).bindPopup($("#text-input2").val()).addTo(map);
+
+    });
+
+  */
+
+  /*
+
+diego rivera murals
+(This is How the Proletarian Revolution Will Be/ Death of the Capitalist)
+19.436960, -99.132026
+
+casa azul
+19.3551, -99.1625
+
+casa trotsky
+19.357626, -99.159599
+
+  */
+
+  $("#text-label3").text("lat?");
+  $("#text-label3").attr('type','number');
+  $("#text-input3").val(19.357626);
+
+  $("#number-label").text("lng?");
+  $("#numeric-input").val(-99.159599);
+
+  $("button").click(function(){
+      $("#text-label2").text("hammer, sickle, or ice axe?");
+      $("#text-input2").val();
+
+      $("#text-label3").text("lat?");
+      $("#text-label3").attr('type','number');
+      $("#text-input3").val();
+
+      $("#number-label").text("lng?");
+      $("#numeric-input").val();
+
+      $("#color-label").text("brick color");
+      $("#color-input").val();
+
+      L.circleMarker([$("#text-input3").val(),$("#numeric-input").val()], {setRadius: 50000000, weight: 8, fillOpacity: 0.75, color:$("#color-input").val()}).bindPopup($("#text-input2").val()).addTo(map);
+
+  });
+
 });
